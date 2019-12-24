@@ -41,6 +41,14 @@ or
 ```
 npm install
 ```
+#### Running
+```
+yarn start
+```
+or
+```
+npm start
+```
 #### Building
 Build for current platform:
 ````
