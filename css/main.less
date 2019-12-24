@@ -1,0 +1,290 @@
+body {
+    background: #fff;
+    overflow:hidden;
+}
+
+.font-oswald {
+    font-family: 'Oswald', sans-serif;
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+#toast-container {
+    top   : initial;
+    right : 1% !important;
+    bottom: 2% !important;
+}
+
+.inp-blue {
+    &.input-field input[type=text]:focus+label {
+        color: rgb(62, 156, 243);
+    }
+
+    /* label underline focus color */
+    &.input-field input[type=text]:focus {
+        border-bottom: 1px solid rgb(62, 156, 243);
+        box-shadow   : 0 1px 0 0 rgb(62, 156, 243);
+    }
+}
+
+#preLoad {
+    position       : absolute;
+    top            : 0;
+    left           : 0;
+    width          : 100%;
+    height         : 100%;
+    background     : #444;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    z-index        : 999;
+}
+
+.no-mg {
+    margin: 0 !important;
+}
+
+.app-bar {
+    color     : #fff;
+    background: #131a20;
+    margin    : 0 -0.75rem;
+    padding   : 0.2rem;
+    height    : 2.2rem;
+
+    .actions {
+        line-height: 1.6rem;
+
+        i {
+            cursor    : pointer;
+            transition: background 0.3s;
+
+            &:hover {
+                background: #ffffff11;
+            }
+        }
+    }
+
+    .title {
+        font-weight       : bold;
+        display           : inline-block;
+        font-size         : 1.1rem;
+        margin-left       : 0.2rem;
+        user-select       : none;
+        width             : 90%;
+        -webkit-app-region: drag;
+
+        span {
+            color: red;
+        }
+    }
+}
+
+.side-bar {
+    background   : #1e252b !important;
+    height       : calc(100vh - 2.4rem);
+    box-shadow   : 0px 5px 0px #1e252b;
+    padding-top  : 1rem !important;
+    border-right : 1px solid #111;
+    margin-top   : -0.1rem;
+    margin-bottom: -0.5rem;
+
+    .search {
+        input {
+            color: #fff;
+        }
+
+        &.input-field label {
+            color: #ddd;
+        }
+
+        /* label focus color */
+        &.input-field input[type=text]:focus+label {
+            color: #fff;
+        }
+
+        /* label underline focus color */
+        &.input-field input[type=text]:focus {
+            border-bottom: 1px solid #fff;
+            box-shadow   : 0 1px 0 0 #fff;
+        }
+
+    }
+
+    #search-results {
+        &.collection {
+            border-color:transparent;
+            .collection-item {
+                background: none !important;
+                color     : #eee;
+                padding   : 5px 15px;
+                line-height: 14px;
+                border-color:#555;
+                font-size: 14px;
+                i{
+                    margin-right:2px;
+                    font-size: 12px;
+                    transform: translateY(1px);
+                }
+            }
+        }
+        .file-name {
+            transition: background 0.2s;
+            &:hover {
+                background:rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+}
+
+.main-cont {
+    //background-image: url(../img/bg.svg);   
+    // overflow          : hidden;
+    background-size   : 100% 100%;
+    height       : calc(100vh - 2.4rem);
+    // background     : #314755;  /* fallback for old browsers */
+    // background     : -webkit-linear-gradient(to top, #26a0da, #314755);  /* Chrome 10-25, Safari 5.1-6 */
+    // background     : linear-gradient(to top, #26a0da, #314755); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+
+    #add-sub {
+        position: absolute;
+        right   : 0.7rem;
+        bottom  : 0.3rem;
+    }
+
+    .subject {
+        background-clip: border-box;
+        border         : 1px solid rgba(0, 0, 0, 0.125);
+        width          : 100%;
+        position: relative;
+
+        .card-title {
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+        }
+        .del-wrapper, .add-wrapper {
+            position:absolute;
+            top:0;
+            right:0;
+            button {
+                cursor: pointer;
+                height:auto!important;
+                padding:0 0.2rem!important;
+                &:hover {
+                    background:#ffffff55;
+                }
+                i {
+                    padding:0;
+                    margin:0;
+                }
+            }
+        }
+        .add-wrapper {
+            top:initial;
+            right:initial;
+            bottom:0;
+            left:0;           
+            button {
+                padding: 0 0.7rem!important;
+                display:flex;
+                height:auto!important;
+            }
+        }
+        i {
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        &.blue {
+            background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;
+        }
+
+        &.dark {
+            background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%) !important;
+        }
+
+        &.green {
+            background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%) !important;
+        }
+
+        &.red {
+            background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%) !important;
+        }
+
+        .preloader-wrapper.small {
+            height    : 15px;
+            width     : 15px;
+            margin-top: 0.2rem;
+        }
+    }
+}
+
+.sub-style {
+    .blue {
+        background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important;
+        height          : 5rem;
+        width           : 5rem;
+
+    }
+
+    .dark {
+        background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%) !important;
+        height          : 5rem;
+        width           : 5rem;
+
+    }
+
+    .green {
+        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%) !important;
+        height          : 5rem;
+        width           : 5rem;
+
+    }
+
+    .red {
+        background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%) !important;
+        height          : 5rem;
+        width           : 5rem;
+
+    }
+}
+
+#files-modal {
+    .chip {
+        padding    : 0.2rem 0.5rem;
+        height     : auto;
+        line-height: initial;
+        margin-top : 0.5rem;
+
+        .close {
+            line-height: initial;
+            transform  : translateY(0.1rem);
+        }
+    }
+}
+
+#tag-edit-modal {
+    #tag-edit-file-icon i {
+        padding: 0.5rem;
+        color  : white;
+    }
+}
+
+.file-name {
+    text-transform: initial!important;
+    cursor: pointer;
+}
+        
+  
+.flex {
+    display  : flex;
+    flex-wrap: wrap;
+}

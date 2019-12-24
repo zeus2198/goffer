@@ -1,0 +1,28 @@
+{
+    "name": "goffer",
+    "version": "1.0.0",    
+    "description": "Beautiful file manager to segregate files based on categories and tags",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build_windows": "electron-packager . --platform=win32 --arch=x64 --asar --overwrite --out=build --icon='./img/icon.ico' --prune=true",
+        "build_mac": "electron-packager . --platform=darwin --arch=x64 --overwrite --out=build --icon='./img/icon.ico' --prune=true",
+        "build_linux": "electron-packager . -platform=linux --arch=x64 --asar --overwrite --out=build --icon='./img/icon.ico' --prune=true",
+        "build": "electron-packager . --asar --overwrite --out=build --icon='./img/icon.ico' --prune=true"
+    },
+    "repository": "",
+    "keywords": [
+        "Goffer"
+    ],
+    "productName": "Goffer",
+    "author": "Simran Singh",
+    "license": "Apache",
+    "devDependencies": {
+        "electron": "^7.1.2",
+        "electron-packager": "^14.1.0"
+    },
+    "dependencies": {
+        "electron-reload": "^1.5.0",
+        "pouchdb-debug": "^7.1.1"
+    }
+}

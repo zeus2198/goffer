@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <title>Goffer</title>
+    <link rel="stylesheet" type="text/css" href="./css/materialize.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/main.min.css"> -->
+    <link rel="stylesheet/less" type="text/css" href="./css/main.less" />
+    <script src="./js/less.js"></script>
+</head>
+
+<body>
+    <link rel="stylesheet" type="text/css" href="./fonts/fonts.css">
+    <link rel="stylesheet" type="text/css" href="./fonts/material-icons.css">
+    <div id="preLoad">
+        <div class="preloader-wrapper big active">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row flex no-mg">
+        <div class="col s12">
+            <div class="app-bar">
+                <span class="title"><span>Go</span>ffer</span>
+                <div class="actions right">
+                    <i onclick="minimize()" class="minimize material-icons">remove</i>
+                    <i onclick="window.close()" class="material-icons">close</i>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4 l3 side-bar">
+            <div class="input-field col s12 search" class="validate">
+                <input id="search" type="text">
+                <label for="search">Search</label>
+            </div>
+            <ul id="search-results" class="collection">
+            </ul>
+        </div>
+        <div class="col s12 m8 l9 main-cont">
+            <!-- ======= ADD BUTTON ======== -->
+            <a href="#add-modal" id="add-sub" class="btn-floating btn-large waves-effect waves-light red modal-trigger">
+                <i class="material-icons">add</i>
+            </a>
+
+            <p id="sub-helper" class="font-poppins flow-text">Added categories will appear here</p>
+            <div id="subs" class="row"></div>
+        </div>
+    </div>
+    <div id="add-discover" class="tap-target blue" data-target="add-sub">
+        <div class="tap-target-content white-text">
+            <h5>Get started</h5>
+            <p>Add your first category</p>
+        </div>
+    </div>
+
+    <!-- ======================================== HIDDEN STUFF ======================================================== -->
+    <input id="file-input" type="file" name="name" class="hide" multiple="multiple" />
+
+    <div id="add-modal" data-startingTop="50%" class="modal">
+        <form onsubmit="event.preventDefault()">
+            <div class="modal-content">
+                <h4>New Category</h4>
+                <br />
+                <div class="inp-blue input-field">
+                    <input id="sub_name" type="text">
+                    <label for="sub_name">Category Name</label>
+                </div>
+                <div class="row flex">
+                    <div class="col s7">
+                        <label>Select icon</label>
+                        <select id="sub_icon" onchange="$('#sub_icon_display').html(this.value)"
+                            class="browser-default">
+                            <option value="3d_rotation">3d_rotation</option>
+                            <option value="ac_unit">ac_unit</option>
+                            <option value="access_alarm">access_alarm</option>
+                            <option value="access_alarms">access_alarms</option>
+                            <option value="access_time">access_time</option>
+                            <option value="accessibility">accessibility</option>
+                            <option value="accessible">accessible</option>
+                            <option value="account_balance">account_balance</option>
+                            <option value="account_balance_wallet">account_balance_wallet</option>
+                            <option value="account_box">account_box</option>
+                            <option value="account_circle">account_circle</option>
+                            <option value="adb">adb</option>
+                            <option value="add">add</option>
+                            <option value="add_a_photo">add_a_photo</option>
+                            <option value="add_alarm">add_alarm</option>
+                            <option value="arrow_back">arrow_back</option>
+                            <option value="arrow_downward">arrow_downward</option>
+                            <option value="arrow_drop_down">arrow_drop_down</option>
+                            <option value="arrow_drop_down_circle">arrow_drop_down_circle</option>
+                            <option value="arrow_drop_up">arrow_drop_up</option>
+                            <option value="arrow_forward">arrow_forward</option>
+                            <option value="arrow_upward">arrow_upward</option>
+                            <option value="art_track">art_track</option>
+                            <option value="aspect_ratio">aspect_ratio</option>
+                            <option value="assessment">assessment</option>
+                            <option value="assignment">assignment</option>
+                            <option value="assignment_ind">assignment_ind</option>
+                            <option value="assignment_late">assignment_late</option>
+                            <option value="assignment_return">assignment_return</option>
+                            <option value="assignment_returned">assignment_returned</option>
+                            <option value="assignment_turned_in">assignment_turned_in</option>
+                            <option value="assistant">assistant</option>
+                            <option value="assistant_photo">assistant_photo</option>
+                            <option value="attach_file">attach_file</option>
+                            <option value="attach_money">attach_money</option>
+                            <option value="attachment">attachment</option>
+                            <option value="audiotrack">audiotrack</option>
+                            <option value="autorenew">autorenew</option>
+                            <option value="av_timer">av_timer</option>
+                            <option value="backspace">backspace</option>
+                            <option value="backup">backup</option>
+                            <option value="battery_alert">battery_alert</option>
+                            <option value="battery_charging_full">battery_charging_full</option>
+                            <option value="battery_full">battery_full</option>
+                            <option value="battery_std">battery_std</option>
+                            <option value="battery_unknown">battery_unknown</option>
+                            <option value="beach_access">beach_access</option>
+                            <option value="beenhere">beenhere</option>
+                            <option value="block">block</option>
+                            <option value="bluetooth">bluetooth</option>
+                            <option value="bluetooth_audio">bluetooth_audio</option>
+                            <option value="bluetooth_connected">bluetooth_connected</option>
+                            <option value="bluetooth_disabled">bluetooth_disabled</option>
+                            <option value="bluetooth_searching">bluetooth_searching</option>
+                            <option value="blur_circular">blur_circular</option>
+                            <option value="blur_linear">blur_linear</option>
+                            <option value="blur_off">blur_off</option>
+                            <option value="blur_on">blur_on</option>
+                            <option value="book">book</option>
+                            <option value="bookmark">bookmark</option>
+                            <option value="bookmark_border">bookmark_border</option>
+                            <option value="border_top">border_top</option>
+                            <option value="border_vertical">border_vertical</option>
+                            <option value="branding_watermark">branding_watermark</option>
+                            <option value="brightness_1">brightness_1</option>
+                            <option value="brightness_2">brightness_2</option>
+                            <option value="brightness_3">brightness_3</option>
+                            <option value="brightness_4">brightness_4</option>
+                            <option value="brightness_5">brightness_5</option>
+                            <option value="brightness_6">brightness_6</option>
+                            <option value="brightness_7">brightness_7</option>
+                            <option value="brightness_auto">brightness_auto</option>
+                            <option value="brightness_high">brightness_high</option>
+                            <option value="brightness_low">brightness_low</option>
+                            <option value="brightness_medium">brightness_medium</option>
+                            <option value="broken_image">broken_image</option>
+                            <option value="card_giftcard">card_giftcard</option>
+                            <option value="card_membership">card_membership</option>
+                            <option value="card_travel">card_travel</option>
+                            <option value="casino">casino</option>
+                            <option value="cast">cast</option>
+                            <option value="cast_connected">cast_connected</option>
+                            <option value="center_focus_strong">center_focus_strong</option>
+                            <option value="center_focus_weak">center_focus_weak</option>
+                            <option value="change_history">change_history</option>
+                            <option value="chat">chat</option>
+                            <option value="chat_bubble">chat_bubble</option>
+                            <option value="chat_bubble_outline">chat_bubble_outline</option>
+                            <option value="check">check</option>
+                            <option value="check_box">check_box</option>
+                            <option value="check_box_outline_blank">check_box_outline_blank</option>
+                            <option value="check_circle">check_circle</option>
+                            <option value="chevron_left">chevron_left</option>
+                            <option value="chevron_right">chevron_right</option>
+                            <option value="child_care">child_care</option>
+                            <option value="child_friendly">child_friendly</option>
+                            <option value="chrome_reader_mode">chrome_reader_mode</option>
+                            <option value="class">class</option>
+                            <option value="clear">clear</option>
+                            <option value="clear_all">clear_all</option>
+                            <option value="close">close</option>
+                            <option value="closed_caption">closed_caption</option>
+                            <option value="cloud">cloud</option>
+                            <option value="cloud_circle">cloud_circle</option>
+                            <option value="cloud_done">cloud_done</option>
+                            <option value="cloud_download">cloud_download</option>
+                            <option value="cloud_off">cloud_off</option>
+                            <option value="cloud_queue">cloud_queue</option>
+                            <option value="cloud_upload">cloud_upload</option>
+                            <option value="code">code</option>
+                            <option value="collections">collections</option>
+                            <option value="collections_bookmark">collections_bookmark</option>
+                            <option value="color_lens">color_lens</option>
+                            <option value="colorize">colorize</option>
+                            <option value="comment">comment</option>
+                            <option value="compare">compare</option>
+                            <option value="compare_arrows">compare_arrows</option>
+                            <option value="computer">computer</option>
+                            <option value="confirmation_number">confirmation_number</option>
+                            <option value="contact_mail">contact_mail</option>
+                            <option value="contact_phone">contact_phone</option>
+                            <option value="contacts">contacts</option>
+                            <option value="content_copy">content_copy</option>
+                            <option value="content_cut">content_cut</option>
+                            <option value="content_paste">content_paste</option>
+                            <option value="control_point">control_point</option>
+                            <option value="control_point_duplicate">control_point_duplicate</option>
+                            <option value="copyright">copyright</option>
+                            <option value="create">create</option>
+                            <option value="create_new_folder">create_new_folder</option>
+                            <option value="credit_card">credit_card</option>
+                            <option value="crop">crop</option>
+                            <option value="crop_16_9">crop_16_9</option>
+                            <option value="crop_3_2">crop_3_2</option>
+                            <option value="crop_5_4">crop_5_4</option>
+                            <option value="crop_7_5">crop_7_5</option>
+                            <option value="crop_din">crop_din</option>
+                            <option value="crop_free">crop_free</option>
+                            <option value="crop_landscape">crop_landscape</option>
+                            <option value="crop_original">crop_original</option>
+                            <option value="crop_portrait">crop_portrait</option>
+                            <option value="crop_rotate">crop_rotate</option>
+                            <option value="crop_square">crop_square</option>
+                            <option value="dashboard">dashboard</option>
+                            <option value="data_usage">data_usage</option>
+                            <option value="date_range">date_range</option>
+                            <option value="dehaze">dehaze</option>
+                            <option value="delete">delete</option>
+                            <option value="delete_forever">delete_forever</option>
+                            <option value="delete_sweep">delete_sweep</option>
+                            <option value="description">description</option>
+                            <option value="desktop_mac">desktop_mac</option>
+                            <option value="desktop_windows">desktop_windows</option>
+                            <option value="details">details</option>
+                            <option value="developer_board">developer_board</option>
+                            <option value="developer_mode">developer_mode</option>
+                            <option value="device_hub">device_hub</option>
+                            <option value="devices">devices</option>
+                            <option value="devices_other">devices_other</option>
+                            <option value="dialer_sip">dialer_sip</option>
+                            <option value="dialpad">dialpad</option>
+                            <option value="directions">directions</option>
+                            <option value="directions_bike">directions_bike</option>
+                            <option value="directions_boat">directions_boat</option>
+                            <option value="directions_bus">directions_bus</option>
+                            <option value="directions_car">directions_car</option>
+                            <option value="directions_railway">directions_railway</option>
+                            <option value="directions_run">directions_run</option>
+                            <option value="directions_subway">directions_subway</option>
+                            <option value="directions_transit">directions_transit</option>
+                            <option value="directions_walk">directions_walk</option>
+                            <option value="disc_full">disc_full</option>
+                            <option value="dns">dns</option>
+                            <option value="do_not_disturb">do_not_disturb</option>
+                            <option value="do_not_disturb_alt">do_not_disturb_alt</option>
+                            <option value="do_not_disturb_off">do_not_disturb_off</option>
+                            <option value="do_not_disturb_on">do_not_disturb_on</option>
+                            <option value="dock">dock</option>
+                            <option value="domain">domain</option>
+                            <option value="done">done</option>
+                            <option value="done_all">done_all</option>
+                            <option value="donut_large">donut_large</option>
+                            <option value="donut_small">donut_small</option>
+                            <option value="drafts">drafts</option>
+                            <option value="drag_handle">drag_handle</option>
+                            <option value="drive_eta">drive_eta</option>
+                            <option value="dvr" selected>dvr</option>
+                            <option value="edit">edit</option>
+                            <option value="edit_location">edit_location</option>
+                            <option value="eject">eject</option>
+                            <option value="email">email</option>
+                            <option value="enhanced_encryption">enhanced_encryption</option>
+                            <option value="equalizer">equalizer</option>
+                            <option value="error">error</option>
+                            <option value="error_outline">error_outline</option>
+                            <option value="euro_symbol">euro_symbol</option>
+                            <option value="ev_station">ev_station</option>
+                            <option value="event">event</option>
+                            <option value="event_available">event_available</option>
+                            <option value="event_busy">event_busy</option>
+                            <option value="event_note">event_note</option>
+                            <option value="event_seat">event_seat</option>
+                            <option value="exit_to_app">exit_to_app</option>
+                            <option value="expand_less">expand_less</option>
+                            <option value="expand_more">expand_more</option>
+                            <option value="filter_frames">filter_frames</option>
+                            <option value="filter_hdr">filter_hdr</option>
+                            <option value="filter_list">filter_list</option>
+                            <option value="fingerprint">fingerprint</option>
+                            <option value="first_page">first_page</option>
+                            <option value="fitness_center">fitness_center</option>
+                            <option value="flag">flag</option>
+                            <option value="flare">flare</option>
+                            <option value="flash_auto">flash_auto</option>
+                            <option value="flash_off">flash_off</option>
+                            <option value="flash_on">flash_on</option>
+                            <option value="flight">flight</option>
+                            <option value="flight_land">flight_land</option>
+                            <option value="flight_takeoff">flight_takeoff</option>
+                            <option value="flip">flip</option>
+                            <option value="flip_to_back">flip_to_back</option>
+                            <option value="flip_to_front">flip_to_front</option>
+                            <option value="folder">folder</option>
+                            <option value="folder_open">folder_open</option>
+                            <option value="folder_shared">folder_shared</option>
+                            <option value="folder_special">folder_special</option>
+                            <option value="forum">forum</option>
+                            <option value="forward">forward</option>
+                            <option value="forward_10">forward_10</option>
+                            <option value="forward_30">forward_30</option>
+                            <option value="forward_5">forward_5</option>
+                            <option value="free_breakfast">free_breakfast</option>
+                            <option value="fullscreen">fullscreen</option>
+                            <option value="fullscreen_exit">fullscreen_exit</option>
+                            <option value="functions">functions</option>
+                            <option value="g_translate">g_translate</option>
+                            <option value="gamepad">gamepad</option>
+                            <option value="games">games</option>
+                            <option value="gavel">gavel</option>
+                            <option value="gesture">gesture</option>
+                            <option value="get_app">get_app</option>
+                            <option value="gif">gif</option>
+                            <option value="golf_course">golf_course</option>
+                            <option value="gps_fixed">gps_fixed</option>
+                            <option value="gps_not_fixed">gps_not_fixed</option>
+                            <option value="gps_off">gps_off</option>
+                            <option value="grade">grade</option>
+                            <option value="gradient">gradient</option>
+                            <option value="grain">grain</option>
+                            <option value="graphic_eq">graphic_eq</option>
+                            <option value="grid_off">grid_off</option>
+                            <option value="grid_on">grid_on</option>
+                            <option value="group">group</option>
+                            <option value="group_add">group_add</option>
+                            <option value="group_work">group_work</option>
+                            <option value="hd">hd</option>
+                            <option value="hdr_off">hdr_off</option>
+                            <option value="hdr_on">hdr_on</option>
+                            <option value="hdr_strong">hdr_strong</option>
+                            <option value="hdr_weak">hdr_weak</option>
+                            <option value="headset">headset</option>
+                            <option value="headset_mic">headset_mic</option>
+                            <option value="healing">healing</option>
+                            <option value="hearing">hearing</option>
+                            <option value="help">help</option>
+                            <option value="help_outline">help_outline</option>
+                            <option value="high_quality">high_quality</option>
+                            <option value="highlight">highlight</option>
+                            <option value="highlight_off">highlight_off</option>
+                            <option value="history">history</option>
+                            <option value="home">home</option>
+                            <option value="hot_tub">hot_tub</option>
+                            <option value="hotel">hotel</option>
+                            <option value="hourglass_empty">hourglass_empty</option>
+                            <option value="hourglass_full">hourglass_full</option>
+                            <option value="http">http</option>
+                            <option value="https">https</option>
+                            <option value="image">image</option>
+                            <option value="image_aspect_ratio">image_aspect_ratio</option>
+                            <option value="import_contacts">import_contacts</option>
+                            <option value="import_export">import_export</option>
+                            <option value="important_devices">important_devices</option>
+                            <option value="inbox">inbox</option>
+                            <option value="indeterminate_check_box">indeterminate_check_box</option>
+                            <option value="info">info</option>
+                            <option value="info_outline">info_outline</option>
+                            <option value="input">input</option>
+                            <option value="insert_chart">insert_chart</option>
+                            <option value="insert_comment">insert_comment</option>
+                            <option value="insert_drive_file">insert_drive_file</option>
+                            <option value="insert_emoticon">insert_emoticon</option>
+                            <option value="insert_invitation">insert_invitation</option>
+                            <option value="insert_link">insert_link</option>
+                            <option value="insert_photo">insert_photo</option>
+                            <option value="invert_colors">invert_colors</option>
+                            <option value="invert_colors_off">invert_colors_off</option>
+                            <option value="iso">iso</option>
+                            <option value="label_outline">label_outline</option>
+                            <option value="landscape">landscape</option>
+                            <option value="language">language</option>
+                            <option value="laptop">laptop</option>
+                            <option value="laptop_chromebook">laptop_chromebook</option>
+                            <option value="laptop_mac">laptop_mac</option>
+                            <option value="laptop_windows">laptop_windows</option>
+                            <option value="last_page">last_page</option>
+                            <option value="launch">launch</option>
+                            <option value="layers">layers</option>
+                            <option value="layers_clear">layers_clear</option>
+                            <option value="leak_add">leak_add</option>
+                            <option value="leak_remove">leak_remove</option>
+                            <option value="lens">lens</option>
+                            <option value="library_add">library_add</option>
+                            <option value="library_books">library_books</option>
+                            <option value="library_music">library_music</option>
+                            <option value="lightbulb_outline">lightbulb_outline</option>
+                            <option value="line_style">line_style</option>
+                            <option value="line_weight">line_weight</option>
+                            <option value="linear_scale">linear_scale</option>
+                            <option value="link">link</option>
+                            <option value="linked_camera">linked_camera</option>
+                            <option value="list">list</option>
+                            <option value="live_help">live_help</option>
+                            <option value="live_tv">live_tv</option>
+                            <option value="local_activity">local_activity</option>
+                            <option value="local_airport">local_airport</option>
+                            <option value="local_atm">local_atm</option>
+                            <option value="local_bar">local_bar</option>
+                            <option value="local_cafe">local_cafe</option>
+                            <option value="local_car_wash">local_car_wash</option>
+                            <option value="local_convenience_store">local_convenience_store</option>
+                            <option value="local_dining">local_dining</option>
+                            <option value="local_drink">local_drink</option>
+                            <option value="local_florist">local_florist</option>
+                            <option value="local_gas_station">local_gas_station</option>
+                            <option value="local_grocery_store">local_grocery_store</option>
+                            <option value="local_hospital">local_hospital</option>
+                            <option value="local_hotel">local_hotel</option>
+                            <option value="local_laundry_service">local_laundry_service</option>
+                            <option value="local_library">local_library</option>
+                            <option value="local_mall">local_mall</option>
+                            <option value="local_movies">local_movies</option>
+                            <option value="local_offer">local_offer</option>
+                            <option value="local_parking">local_parking</option>
+                            <option value="local_pharmacy">local_pharmacy</option>
+                            <option value="local_phone">local_phone</option>
+                            <option value="local_pizza">local_pizza</option>
+                            <option value="local_play">local_play</option>
+                            <option value="local_post_office">local_post_office</option>
+                            <option value="local_printshop">local_printshop</option>
+                            <option value="local_see">local_see</option>
+                            <option value="local_shipping">local_shipping</option>
+                            <option value="local_taxi">local_taxi</option>
+                            <option value="location_city">location_city</option>
+                            <option value="location_disabled">location_disabled</option>
+                            <option value="location_off">location_off</option>
+                            <option value="location_on">location_on</option>
+                            <option value="location_searching">location_searching</option>
+                            <option value="lock">lock</option>
+                            <option value="lock_open">lock_open</option>
+                            <option value="lock_outline">lock_outline</option>
+                            <option value="looks">looks</option>
+                            <option value="looks_3">looks_3</option>
+                            <option value="looks_4">looks_4</option>
+                            <option value="looks_5">looks_5</option>
+                            <option value="looks_6">looks_6</option>
+                            <option value="mic_off">mic_off</option>
+                            <option value="mms">mms</option>
+                            <option value="mode_comment">mode_comment</option>
+                            <option value="mode_edit">mode_edit</option>
+                            <option value="monetization_on">monetization_on</option>
+                            <option value="money_off">money_off</option>
+                            <option value="monochrome_photos">monochrome_photos</option>
+                            <option value="mood">mood</option>
+                            <option value="mood_bad">mood_bad</option>
+                            <option value="more">more</option>
+                            <option value="more_horiz">more_horiz</option>
+                            <option value="more_vert">more_vert</option>
+                            <option value="motorcycle">motorcycle</option>
+                            <option value="mouse">mouse</option>
+                            <option value="move_to_inbox">move_to_inbox</option>
+                            <option value="movie">movie</option>
+                            <option value="movie_creation">movie_creation</option>
+                            <option value="movie_filter">movie_filter</option>
+                            <option value="multiline_chart">multiline_chart</option>
+                            <option value="music_note">music_note</option>
+                            <option value="music_video">music_video</option>
+                            <option value="my_location">my_location</option>
+                            <option value="nature">nature</option>
+                            <option value="nature_people">nature_people</option>
+                            <option value="navigate_before">navigate_before</option>
+                            <option value="navigate_next">navigate_next</option>
+                            <option value="navigation">navigation</option>
+                            <option value="near_me">near_me</option>
+                            <option value="network_cell">network_cell</option>
+                            <option value="network_check">network_check</option>
+                            <option value="network_locked">network_locked</option>
+                            <option value="network_wifi">network_wifi</option>
+                            <option value="new_releases">new_releases</option>
+                            <option value="next_week">next_week</option>
+                            <option value="nfc">nfc</option>
+                            <option value="no_encryption">no_encryption</option>
+                            <option value="no_sim">no_sim</option>
+                            <option value="not_interested">not_interested</option>
+                            <option value="note">note</option>
+                            <option value="note_add">note_add</option>
+                            <option value="notifications">notifications</option>
+                            <option value="notifications_active">notifications_active</option>
+                            <option value="notifications_none">notifications_none</option>
+                            <option value="notifications_off">notifications_off</option>
+                            <option value="notifications_paused">notifications_paused</option>
+                            <option value="offline_pin">offline_pin</option>
+                            <option value="ondemand_video">ondemand_video</option>
+                            <option value="opacity">opacity</option>
+                            <option value="open_in_browser">open_in_browser</option>
+                            <option value="open_in_new">open_in_new</option>
+                            <option value="open_with">open_with</option>
+                            <option value="pages">pages</option>
+                            <option value="pageview">pageview</option>
+                            <option value="palette">palette</option>
+                            <option value="pan_tool">pan_tool</option>
+                            <option value="panorama">panorama</option>
+                            <option value="panorama_fish_eye">panorama_fish_eye</option>
+                            <option value="panorama_horizontal">panorama_horizontal</option>
+                            <option value="panorama_vertical">panorama_vertical</option>
+                            <option value="panorama_wide_angle">panorama_wide_angle</option>
+                            <option value="party_mode">party_mode</option>
+                            <option value="pause">pause</option>
+                            <option value="pause_circle_filled">pause_circle_filled</option>
+                            <option value="pause_circle_outline">pause_circle_outline</option>
+                            <option value="payment">payment</option>
+                            <option value="people">people</option>
+                            <option value="people_outline">people_outline</option>
+                            <option value="perm_camera_mic">perm_camera_mic</option>
+                            <option value="perm_contact_calendar">perm_contact_calendar</option>
+                            <option value="perm_data_setting">perm_data_setting</option>
+                            <option value="perm_device_information">perm_device_information</option>
+                            <option value="perm_identity">perm_identity</option>
+                            <option value="perm_media">perm_media</option>
+                            <option value="perm_phone_msg">perm_phone_msg</option>
+                            <option value="perm_scan_wifi">perm_scan_wifi</option>
+                            <option value="person">person</option>
+                            <option value="person_add">person_add</option>
+                            <option value="person_outline">person_outline</option>
+                            <option value="person_pin">person_pin</option>
+                            <option value="person_pin_circle">person_pin_circle</option>
+                            <option value="personal_video">personal_video</option>
+                            <option value="pets">pets</option>
+                            <option value="phone">phone</option>
+                            <option value="phone_android">phone_android</option>
+                            <option value="phone_bluetooth_speaker">phone_bluetooth_speaker</option>
+                            <option value="phone_forwarded">phone_forwarded</option>
+                            <option value="phone_in_talk">phone_in_talk</option>
+                            <option value="phone_iphone">phone_iphone</option>
+                            <option value="phone_locked">phone_locked</option>
+                            <option value="phone_missed">phone_missed</option>
+                            <option value="phone_paused">phone_paused</option>
+                            <option value="phonelink">phonelink</option>
+                            <option value="phonelink_erase">phonelink_erase</option>
+                            <option value="phonelink_lock">phonelink_lock</option>
+                            <option value="phonelink_off">phonelink_off</option>
+                            <option value="phonelink_ring">phonelink_ring</option>
+                            <option value="phonelink_setup">phonelink_setup</option>
+                            <option value="photo">photo</option>
+                            <option value="photo_album">photo_album</option>
+                            <option value="photo_camera">photo_camera</option>
+                            <option value="photo_filter">photo_filter</option>
+                            <option value="photo_library">photo_library</option>
+                            <option value="photo_size_select_actual">photo_size_select_actual</option>
+                            <option value="photo_size_select_large">photo_size_select_large</option>
+                            <option value="photo_size_select_small">photo_size_select_small</option>
+                            <option value="picture_as_pdf">picture_as_pdf</option>
+                            <option value="picture_in_picture">picture_in_picture</option>
+                            <option value="picture_in_picture_alt">picture_in_picture_alt</option>
+                            <option value="pie_chart">pie_chart</option>
+                            <option value="pie_chart_outlined">pie_chart_outlined</option>
+                            <option value="pin_drop">pin_drop</option>
+                            <option value="place">place</option>
+                            <option value="play_arrow">play_arrow</option>
+                            <option value="play_circle_filled">play_circle_filled</option>
+                            <option value="play_circle_outline">play_circle_outline</option>
+                            <option value="play_for_work">play_for_work</option>
+                            <option value="playlist_add">playlist_add</option>
+                            <option value="playlist_add_check">playlist_add_check</option>
+                            <option value="playlist_play">playlist_play</option>
+                            <option value="plus_one">plus_one</option>
+                            <option value="poll">poll</option>
+                            <option value="polymer">polymer</option>
+                            <option value="pool">pool</option>
+                            <option value="portable_wifi_off">portable_wifi_off</option>
+                            <option value="portrait">portrait</option>
+                            <option value="power">power</option>
+                            <option value="power_input">power_input</option>
+                            <option value="power_settings_new">power_settings_new</option>
+                            <option value="pregnant_woman">pregnant_woman</option>
+                            <option value="present_to_all">present_to_all</option>
+                            <option value="print">print</option>
+                            <option value="priority_high">priority_high</option>
+                            <option value="repeat">repeat</option>
+                            <option value="repeat_one">repeat_one</option>
+                            <option value="replay">replay</option>
+                            <option value="replay_10">replay_10</option>
+                            <option value="replay_30">replay_30</option>
+                            <option value="replay_5">replay_5</option>
+                            <option value="reply">reply</option>
+                            <option value="reply_all">reply_all</option>
+                            <option value="report">report</option>
+                            <option value="report_problem">report_problem</option>
+                            <option value="restaurant">restaurant</option>
+                            <option value="restaurant_menu">restaurant_menu</option>
+                            <option value="restore">restore</option>
+                            <option value="restore_page">restore_page</option>
+                            <option value="ring_volume">ring_volume</option>
+                            <option value="room">room</option>
+                            <option value="room_service">room_service</option>
+                            <option value="rotate_90_degrees_ccw">rotate_90_degrees_ccw</option>
+                            <option value="rotate_left">rotate_left</option>
+                            <option value="rotate_right">rotate_right</option>
+                            <option value="rounded_corner">rounded_corner</option>
+                            <option value="router">router</option>
+                            <option value="rowing">rowing</option>
+                            <option value="rss_feed">rss_feed</option>
+                            <option value="rv_hookup">rv_hookup</option>
+                            <option value="satellite">satellite</option>
+                            <option value="save">save</option>
+                            <option value="scanner">scanner</option>
+                            <option value="schedule">schedule</option>
+                            <option value="school">school</option>
+                            <option value="screen_lock_landscape">screen_lock_landscape</option>
+                            <option value="screen_lock_portrait">screen_lock_portrait</option>
+                            <option value="screen_lock_rotation">screen_lock_rotation</option>
+                            <option value="screen_rotation">screen_rotation</option>
+                            <option value="screen_share">screen_share</option>
+                            <option value="sd_card">sd_card</option>
+                            <option value="sd_storage">sd_storage</option>
+                            <option value="search">search</option>
+                            <option value="security">security</option>
+                            <option value="select_all">select_all</option>
+                            <option value="send">send</option>
+                            <option value="sentiment_dissatisfied">sentiment_dissatisfied</option>
+                            <option value="sentiment_neutral">sentiment_neutral</option>
+                            <option value="sentiment_satisfied">sentiment_satisfied</option>
+                            <option value="sentiment_very_dissatisfied">sentiment_very_dissatisfied</option>
+                            <option value="sentiment_very_satisfied">sentiment_very_satisfied</option>
+                            <option value="settings">settings</option>
+                            <option value="settings_applications">settings_applications</option>
+                            <option value="settings_backup_restore">settings_backup_restore</option>
+                            <option value="settings_bluetooth">settings_bluetooth</option>
+                            <option value="settings_brightness">settings_brightness</option>
+                            <option value="settings_cell">settings_cell</option>
+                            <option value="settings_ethernet">settings_ethernet</option>
+                            <option value="settings_input_antenna">settings_input_antenna</option>
+                            <option value="settings_input_component">settings_input_component</option>
+                            <option value="settings_input_composite">settings_input_composite</option>
+                            <option value="settings_input_hdmi">settings_input_hdmi</option>
+                            <option value="settings_input_svideo">settings_input_svideo</option>
+                            <option value="settings_overscan">settings_overscan</option>
+                            <option value="settings_phone">settings_phone</option>
+                            <option value="settings_power">settings_power</option>
+                            <option value="settings_remote">settings_remote</option>
+                            <option value="settings_system_daydream">settings_system_daydream</option>
+                            <option value="settings_voice">settings_voice</option>
+                            <option value="share">share</option>
+                            <option value="shop">shop</option>
+                            <option value="shop_two">shop_two</option>
+                            <option value="shopping_basket">shopping_basket</option>
+                            <option value="shopping_cart">shopping_cart</option>
+                            <option value="short_text">short_text</option>
+                            <option value="show_chart">show_chart</option>
+                            <option value="shuffle">shuffle</option>
+                            <option value="signal_cellular_4_bar">signal_cellular_4_bar</option>
+                            <option value="signal_cellular_connected_no_internet_4_bar">
+                                signal_cellular_connected_no_internet_4_bar</option>
+                            <option value="signal_cellular_no_sim">signal_cellular_no_sim</option>
+                            <option value="signal_cellular_null">signal_cellular_null</option>
+                            <option value="signal_cellular_off">signal_cellular_off</option>
+                            <option value="signal_wifi_4_bar">signal_wifi_4_bar</option>
+                            <option value="signal_wifi_4_bar_lock">signal_wifi_4_bar_lock</option>
+                            <option value="signal_wifi_off">signal_wifi_off</option>
+                            <option value="sim_card">sim_card</option>
+                            <option value="sim_card_alert">sim_card_alert</option>
+                            <option value="skip_next">skip_next</option>
+                            <option value="skip_previous">skip_previous</option>
+                            <option value="slideshow">slideshow</option>
+                            <option value="slow_motion_video">slow_motion_video</option>
+                            <option value="smartphone">smartphone</option>
+                            <option value="smoke_free">smoke_free</option>
+                            <option value="smoking_rooms">smoking_rooms</option>
+                            <option value="sms">sms</option>
+                            <option value="sms_failed">sms_failed</option>
+                            <option value="snooze">snooze</option>
+                            <option value="sort">sort</option>
+                            <option value="sort_by_alpha">sort_by_alpha</option>
+                            <option value="spa">spa</option>
+                            <option value="space_bar">space_bar</option>
+                            <option value="speaker">speaker</option>
+                            <option value="speaker_group">speaker_group</option>
+                            <option value="speaker_notes">speaker_notes</option>
+                            <option value="speaker_notes_off">speaker_notes_off</option>
+                            <option value="speaker_phone">speaker_phone</option>
+                            <option value="text_format">text_format</option>
+                            <option value="textsms">textsms</option>
+                            <option value="texture">texture</option>
+                            <option value="theaters">theaters</option>
+                            <option value="thumb_down">thumb_down</option>
+                            <option value="thumb_up">thumb_up</option>
+                            <option value="thumbs_up_down">thumbs_up_down</option>
+                            <option value="time_to_leave">time_to_leave</option>
+                            <option value="timelapse">timelapse</option>
+                            <option value="timeline">timeline</option>
+                            <option value="timer">timer</option>
+                            <option value="timer_10">timer_10</option>
+                            <option value="timer_3">timer_3</option>
+                            <option value="timer_off">timer_off</option>
+                            <option value="title">title</option>
+                            <option value="toc">toc</option>
+                            <option value="today">today</option>
+                            <option value="toll">toll</option>
+                            <option value="tonality">tonality</option>
+                            <option value="touch_app">touch_app</option>
+                            <option value="toys">toys</option>
+                            <option value="track_changes">track_changes</option>
+                            <option value="traffic">traffic</option>
+                            <option value="train">train</option>
+                            <option value="tram">tram</option>
+                            <option value="transfer_within_a_station">transfer_within_a_station</option>
+                            <option value="transform">transform</option>
+                            <option value="translate">translate</option>
+                            <option value="trending_down">trending_down</option>
+                            <option value="trending_flat">trending_flat</option>
+                            <option value="trending_up">trending_up</option>
+                            <option value="tune">tune</option>
+                            <option value="turned_in">turned_in</option>
+                            <option value="turned_in_not">turned_in_not</option>
+                            <option value="tv">tv</option>
+                            <option value="unarchive">unarchive</option>
+                            <option value="undo">undo</option>
+                            <option value="unfold_less">unfold_less</option>
+                            <option value="unfold_more">unfold_more</option>
+                            <option value="update">update</option>
+                            <option value="usb">usb</option>
+                            <option value="verified_user">verified_user</option>
+                            <option value="vertical_align_bottom">vertical_align_bottom</option>
+                            <option value="vertical_align_center">vertical_align_center</option>
+                            <option value="vertical_align_top">vertical_align_top</option>
+                            <option value="vibration">vibration</option>
+                            <option value="video_call">video_call</option>
+                            <option value="video_label">video_label</option>
+                            <option value="video_library">video_library</option>
+                            <option value="videocam">videocam</option>
+                            <option value="videocam_off">videocam_off</option>
+                            <option value="videogame_asset">videogame_asset</option>
+                            <option value="view_agenda">view_agenda</option>
+                            <option value="view_array">view_array</option>
+                            <option value="view_carousel">view_carousel</option>
+                            <option value="view_column">view_column</option>
+                            <option value="view_comfy">view_comfy</option>
+                            <option value="view_compact">view_compact</option>
+                            <option value="view_day">view_day</option>
+                            <option value="view_headline">view_headline</option>
+                            <option value="view_list">view_list</option>
+                            <option value="view_module">view_module</option>
+                            <option value="view_quilt">view_quilt</option>
+                            <option value="view_stream">view_stream</option>
+                            <option value="view_week">view_week</option>
+                            <option value="vignette">vignette</option>
+                            <option value="visibility">visibility</option>
+                            <option value="visibility_off">visibility_off</option>
+                            <option value="voice_chat">voice_chat</option>
+                            <option value="voicemail">voicemail</option>
+                            <option value="volume_down">volume_down</option>
+                            <option value="volume_mute">volume_mute</option>
+                            <option value="volume_off">volume_off</option>
+                            <option value="volume_up">volume_up</option>
+                            <option value="vpn_key">vpn_key</option>
+                            <option value="vpn_lock">vpn_lock</option>
+                            <option value="wallpaper">wallpaper</option>
+                            <option value="warning">warning</option>
+                            <option value="watch">watch</option>
+                            <option value="watch_later">watch_later</option>
+                            <option value="wb_auto">wb_auto</option>
+                            <option value="wb_cloudy">wb_cloudy</option>
+                            <option value="wb_incandescent">wb_incandescent</option>
+                            <option value="wb_iridescent">wb_iridescent</option>
+                            <option value="wb_sunny">wb_sunny</option>
+                            <option value="widgets">widgets</option>
+                            <option value="wifi">wifi</option>
+                            <option value="wifi_lock">wifi_lock</option>
+                            <option value="wifi_tethering">wifi_tethering</option>
+                            <option value="work">work</option>
+                            <option value="wrap_text">wrap_text</option>
+                            <option value="youtube_searched_for">youtube_searched_for</option>
+                            <option value="zoom_in">zoom_in</option>
+                            <option value="zoom_out">zoom_out</option>
+                            <option value="zoom_out_map">zoom_out_map</option>
+
+                        </select>
+                    </div>
+                    <div class="col s5 valign-wrapper" style="justify-content: center;">
+                        <i id="sub_icon_display" style="transform: translateY(0.7rem);"
+                            class="small material-icons">dvr</i>
+                    </div>
+                </div>
+                <label>Select Card Style</label>
+                <br /> <br />
+                <div class="sub-style row">
+                    <div class="col s3">
+                        <label>
+                            <input name="sub_style" value="dark" type="radio" checked />
+                            <span>Dark</span>
+                            <div class="dark"></div>
+                        </label>
+                    </div>
+                    <div class="col s3">
+                        <label>
+                            <input name="sub_style" value="green" type="radio" />
+                            <span>Green</span>
+                            <div class="green"></div>
+                        </label>
+                    </div>
+                    <div class="col s3">
+                        <label>
+                            <input name="sub_style" value="blue" type="radio" />
+                            <span>Blue</span>
+                            <div class="blue"></div>
+                        </label>
+                    </div>
+                    <div class="col s3">
+                        <label>
+                            <input name="sub_style" value="red" type="radio" />
+                            <span>Red</span>
+                            <div class="red"></div>
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="action" onclick="addSub()" class="btn green">Add</button>
+                <a href="#!" class="modal-close btn red">Close</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="files-modal" class="modal modal-fixed-footer bottom-sheet">
+        <div class="modal-content">
+            <h4>Files</h4>
+            <ul class="collection" id="filesMenu">
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <div id="del-sub-modal" class="modal">
+        <div class="modal-content">
+            <h4>Delete Category</h4>
+            <br />
+            Are you sure you want to delete this category?
+            <br /><br />
+            <small>Note: Deleting a category would not actually delete the files related to it physically from the
+                system, to delete them you need to manually delete them using file explorer.</small>
+        </div>
+        <div class="modal-footer">
+            <button onclick="deleteSubject()" class="btn waves-effect waves-light green">Confirm</button>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
+        </div>
+    </div>
+
+    <div id="tag-edit-modal" class="modal">
+        <div class="modal-content">
+            <h4>Edit tags</h4>
+            <br />
+            <div class="card-panel grey lighten-5 z-depth-1">
+                <div class="row valign-wrapper">
+                    <div id="tag-edit-file-icon" class="col s2">
+                        <i class="material-icons amber darken-3 circle">help</i>
+                    </div>
+                    <div class="col s10">
+                        <span class="black-text" id="tag-edit-fname">
+                            File Name
+                        </span>
+                        <div id="tag-edit-chips" class="chips"></div>
+                        <small>Press enter at end of each tag</small>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button onclick="saveTags()" class="btn waves-effect waves-light green">Save</button>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- ===================================================== TEMPLATES ============================================================================ -->
+    <script id="sub-template" type="text/template">
+        <div id="{{nameR}}-sub" class="col s6 m4 l3">
+            <div data-sub="{{name}}" onclick="openFileModal(event, this)" class="card waves-effect waves-light subject darken-3 z-depth-2 center-align {{style}}">
+                <div class="del-wrapper">
+                    <button data-sub="{{name}}" onclick="openDelSubModal(event, this)" class="btn-flat white-text">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+                <div class="card-content white-text">
+                    <i class="medium material-icons">{{icon}}</i>
+                    <span class="card-title font-oswald">{{name}}</span>
+                </div>
+                <span class="white-text font-poppins badge">Total files:
+                    <span id="{{nameR}}-file-count">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </span>
+                <div class="add-wrapper">
+                    <button data-sub="{{name}}" onclick="openFileInputDialog(event, this)" class="btn-flat white-text">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="file-template" type="text/template">
+        <li class="collection-item avatar">
+            <i class="material-icons {{color}} circle">{{icon}}</i>
+            <button data-path="{{path}}" onclick="openFile(this)" class="title file-name waves-effect btn-flat">{{name}}</button>
+            <p>
+                {{#tags}}
+                <div class="chip">
+                    {{tag}}
+                </div>
+                {{/tags}}
+
+            </p>
+            <button data-sub="{{sub}}" data-path="{{path}}" onclick="openEditTagsModal(this)" class="btn-floating waves-effect waves-light secondary-content yellow darken-2">
+                <i class="material-icons">edit</i>
+            </button>
+        </li>
+    </script>
+
+    <script id="file-search" type="text/template">
+            <li class="collection-item truncate">
+                <i class="material-icons {{color}}-text tiny">{{icon}}</i>
+                <span data-path="{{path}}" onclick="openFile(this)" class="file-name">{{name}}</span>
+                <i class="right font-oswald">{{subject}}</i>
+            </li>
+    </script>
+
+
+    <script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+    </script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/pouch.js"></script>
+    <script src="./js/hogan.js"></script>
+    <script>
+        const mode = "prod"; // dev||prod
+        if (window.module) module = window.module;
+
+        const { remote, shell } = require('electron');
+
+        if (mode == "dev") {
+            PouchDB.plugin(require('pouchdb-debug'));
+            PouchDB.debug.enable('pouchdb:api');
+        }
+
+
+        var db, subjects = null, files = null, subFiles = {}, editTagsIndex = -1, delSub = null, addFilesSub = null;
+
+        var subTemplate = Hogan.compile($("#sub-template").html()),
+            fileTemplate = Hogan.compile($("#file-template").html()),
+            fileSearchTemplate = Hogan.compile($("#file-search").html());
+
+        const fileTypes = {
+            'default': { icon: 'help', color: 'amber darken-3' },
+            'doc': { icon: 'edit', color: 'blue' },
+            'docx': { icon: 'edit', color: 'blue' },
+            'xls': { icon: 'grid_on', color: 'green' },
+            'xlsx': { icon: 'grid_on', color: 'green' },
+            'pdf': { icon: 'picture_as_pdf', color: 'red' },
+            'txt': { icon: 'short_text', color: 'grey lighten-3' },
+            'jpg': { icon: 'image', color: 'deep-purple' },
+            'jpeg': { icon: 'image', color: 'deep-purple' },
+            'png': { icon: 'image', color: 'deep-purple' },
+            'ppt': { icon: 'slideshow', color: 'pink' },
+            'pptx': { icon: 'slideshow', color: 'pink' },
+            'zip': { icon: 'library_books', color: 'deep-orange' },
+            'rar': { icon: 'library_books', color: 'deep-orange' }
+        };
+
+        function err(msg) {
+            M.toast({ html: msg, classes: 'red accent-2 text-white' });
+        }
+        function success(msg) {
+            M.toast({ html: msg, classes: 'green text-white' });
+        }
+
+
+        $(document).ready(function () {
+            /* ========= initialization ============= */
+            M.AutoInit();
+            db = new PouchDB('goffer');
+
+            $(document).on('dragover dragleave', '.subject', function (event) {
+                event.stopPropagation()
+                event.preventDefault()
+            });
+
+            $(document).on('drop', '.subject', function (event) {
+                // on file drop in subject
+                event.stopPropagation();
+                event.preventDefault();
+                let mfiles = event.originalEvent.target.files || event.originalEvent.dataTransfer.files, subj = '';
+                subj = event.currentTarget.getAttribute("data-sub");
+                for (const f of mfiles) {
+                    if (subj in subFiles)
+                        subFiles[subj].push({ subject: subj, name: f.name, path: f.path, type: f.type, lastModified: f.lastModified, tags: [] });
+                    else subFiles[subj] = [{ subject: subj, name: f.name, path: f.path, type: f.type, lastModified: f.lastModified, tags: [] }];
+                    files.ar.push({ subject: subj, name: f.name, path: f.path, type: f.type, lastModified: f.lastModified, tags: [] });
+                }
+                $(`#${subj.replace(' ', '-')}-file-count`).html(subFiles[subj].length);
+                db.put(files).then(function (res) {
+                    files._rev = res.rev;
+                    success(mfiles.length + ` file${mfiles.length == 1 ? '' : 's'} added successfully`);
+                }).catch(function (err) {
+                    console.log(err);
+                    err("Some error occured")
+                });
+            });
+
+            $("#file-input").change((event) => {
+                let mfiles = event.originalEvent.target.files || event.originalEvent.dataTransfer.files,
+                    subj = addFilesSub;
+                addFilesSub = null;
+                for (const f of mfiles) {
+                    if (subj in subFiles)
+                        subFiles[subj].push({ subject: subj, name: f.name, path: f.path, type: f.type, lastModified: f.lastModified, tags: [] });
+                    else subFiles[subj] = [{ subject: subj, name: f.name, path: f.path, type: f.type, lastModified: f.lastModified, tags: [] }];
+                    files.ar.push({ subject: subj, name: f.name, path: f.path, type: f.type, lastModified: f.lastModified, tags: [] });
+                }
+                $(`#${subj.replace(' ', '-')}-file-count`).html(subFiles[subj].length);
+                db.put(files).then(function (res) {
+                    files._rev = res.rev;
+                    success(mfiles.length + ` file${mfiles.length == 1 ? '' : 's'} added successfully`);
+                }).catch(function (err) {
+                    console.log(err);
+                    err("Some error occured")
+                });
+            });
+
+            Promise.all([
+                // ====================== GET SUBJECTS/CATEGORIES
+                db.get('subjects').then(function (doc) {
+                    subjects = doc;
+                    if (subjects.ar.length > 0) {
+                        let items = "";
+                        $("#sub-helper").addClass("hide");
+                        for (const s of subjects.ar)
+                            items += subTemplate.render({ ...s, nameR: s.name.replace(' ', '-') });
+                        $("#subs").append(items);
+                    }
+                }).catch(() => {
+                    subjects = {
+                        _id: "subjects",
+                        ar: []
+                    };
+                }),
+                // ====================== GET FILES
+                db.get('files').then(function (doc) {
+                    files = doc;
+                    //console.log(files);
+                    for (const f of files.ar) {
+                        if (f.subject in subFiles)
+                            subFiles[f.subject].push(f);
+                        else subFiles[f.subject] = [f];
+                    }
+                }).catch(() => {
+                    files = {
+                        _id: "files",
+                        ar: []
+                    };
+                })
+            ]).then(() => { }).catch(() => { })
+                .then(() => {
+                    $("#preLoad").delay(1300).fadeOut();
+                    if (subjects.ar.length == 0)
+                        setTimeout(() => {
+                            $('.tap-target').tapTarget('open');
+                        }, 1500);
+                    else $('.tap-target').tapTarget('destroy');
+
+                    setTimeout(() => {
+                        for (const sub of subjects.ar) {
+                            if (sub.name in subFiles)
+                                $(`#${sub.name.replace(' ', '-')}-file-count`).html(subFiles[sub.name].length);
+                            else
+                                $(`#${sub.name.replace(' ', '-')}-file-count`).html(0);
+                        }
+                    }, 500);
+                });
+
+            //=================================================== SEARCH CODE 
+            $("#search").keyup(function (e) {
+                let key = e.target.value.toLowerCase(), items = "";
+                if (key.length == 0) {
+                    $("#search-results").html("");
+                    return;
+                }
+                setTimeout(() => {
+                    let i, ext, col;
+                    for (const f of files.ar) {
+                        if (f.name.toLowerCase().indexOf(key) != -1) {
+                            i = f.name.lastIndexOf('.');
+                            if (i == -1)
+                                ext = 'default';
+                            else {
+                                ext = f.name.substring(i + 1).toLowerCase();
+                                ext = ext in fileTypes ? ext : 'default';
+                            }
+                            if (fileTypes[ext].color.indexOf(" ") != -1)
+                                col = fileTypes[ext].color.substring(0, fileTypes[ext].color.indexOf(" "));
+                            else col = fileTypes[ext].color;
+                            items += fileSearchTemplate.render({ name: f.name, color: col, icon: fileTypes[ext].icon, subject: f.subject, path: f.path });
+                        }
+                        else {
+                            for (t of f.tags) {
+                                if (t.tag.toLowerCase().indexOf(key) != -1) {
+                                    i = f.name.lastIndexOf('.');
+                                    if (i == -1)
+                                        ext = 'default';
+                                    else {
+                                        ext = f.name.substring(i + 1).toLowerCase();
+                                        ext = ext in fileTypes ? ext : 'default';
+                                    }
+                                    if (fileTypes[ext].color.indexOf(" ") != -1)
+                                        col = fileTypes[ext].color.substring(0, fileTypes[ext].color.indexOf(" "));
+                                    else col = fileTypes[ext].color;
+                                    items += fileSearchTemplate.render({ name: f.name, path: f.path, color: col, icon: fileTypes[ext].icon, subject: 'Tag: ' + t.tag });
+                                }
+
+                            }
+                        }
+                    }
+                    $("#search-results").html(items);
+                }, 10);
+            });
+
+        });
+
+        function addSub() {
+            let sub = $("#sub_name").val().toLowerCase();
+            if (sub.length == 0)
+                return err('Category field cannot be empty');
+            for (let i = 0; i < subjects.ar.length; i++)
+                if (subjects.ar[i].name == sub)
+                    return err("That category already exists");
+            subjects.ar.push({ name: sub, icon: $("#sub_icon").val(), style: $("input[name='sub_style']:checked").val(), createdOn: $.now(), updated: $.now() });
+            $('#add-modal').modal('close');
+            db.put(subjects).then(function (res) {
+                subjects._rev = res.rev;
+                success("Subject added")
+                $("#sub-helper").addClass("hide");
+                $("#subs").append(subTemplate.render({ name: sub, nameR: sub.replace(' ', '-'), icon: $("#sub_icon").val(), style: $("input[name='sub_style']:checked").val() }));
+                setTimeout(() => $(`#${sub.replace(' ', '-')}-file-count`).html(0), 100);
+            }).catch(function (err) {
+                console.log(err);
+                err("Some error occured")
+            });
+        }
+
+        function deleteSubject() {
+            let i;
+            for (i = 0; i < subjects.ar.length; i++)
+                if (subjects.ar[i].name == delSub)
+                    break;
+            subjects.ar.splice(i, 1);
+            $("#" + delSub.replace(' ', '-') + "-sub").remove();
+
+            setTimeout(() => {
+                $('#del-sub-modal').modal('close');
+            }, 100)
+            db.put(subjects).then(function (res) {
+                subjects._rev = res.rev;
+                success("Subjecte deleted successfully");
+                subFiles[delSub] = [];
+                for (i = 0; i < files.ar.length; i++) {
+                    if (files.ar[i].subject == delSub) {
+                        files.ar.splice(i, 1);
+                        i--;
+                    }
+                }
+                db.put(files).then(function (res) {
+                    files._rev = res.rev;
+                }).catch(function (err) {
+                    console.log(err);
+                    err("Some error occured")
+                });
+            }).catch(function (err) {
+                console.log(err);
+                err("Some error occured");
+            });
+
+
+        }
+
+        function openFileModal(e, that) {
+            let sub = that.getAttribute("data-sub");
+            if (sub in subFiles) {
+                let items = "", ext = '', i;
+                for (f of subFiles[sub]) {
+                    i = f.name.lastIndexOf('.');
+                    if (i == -1)
+                        ext = 'default';
+                    else {
+                        ext = f.name.substring(i + 1).toLowerCase();
+                        ext = ext in fileTypes ? ext : 'default';
+                    }
+                    items += fileTemplate.render({ name: f.name, color: fileTypes[ext].color, tags: f.tags.length == 0 ? [{ tag: "Add tags" }] : f.tags, icon: fileTypes[ext].icon, path: f.path, sub: f.subject });
+                }
+                $("#filesMenu").html(items);
+            }
+            else $("#filesMenu").html("<br>&nbsp;&nbsp;No files in this category<br><br>");
+            setTimeout(() => $("#files-modal").modal('open'), 200);
+        }
+
+        function openDelSubModal(e, that) {
+            e.stopPropagation();
+            delSub = that.getAttribute("data-sub");
+            $("#del-sub-modal").modal('open');
+        }
+
+
+        function openFileInputDialog(e, that) {
+            e.stopPropagation();
+            addFilesSub = that.getAttribute("data-sub");
+            $('#file-input').trigger('click');
+        }
+
+        function openEditTagsModal(e) {
+            let sub = e.getAttribute("data-sub"), path = e.getAttribute("data-path");
+            let ext = '', i, j, f;
+            for (j = 0; j < files.ar.length; j++) {
+                f = files.ar[j];
+                if (f.path == path) {
+                    i = f.name.lastIndexOf('.');
+                    if (i == -1)
+                        ext = 'default';
+                    else {
+                        ext = f.name.substring(i + 1).toLowerCase();
+                        ext = ext in fileTypes ? ext : 'default';
+                    }
+                    $("#tag-edit-file-icon").html(`<i class="material-icons ${fileTypes[ext].color} circle">${fileTypes[ext].icon}</i>`);
+                    $("#tag-edit-fname").html(f.name);
+                    $('#tag-edit-chips').chips({
+                        data: f.tags,
+                        placeholder: 'Enter a tag',
+                        secondaryPlaceholder: '+Tag',
+                    });
+                    editTagsIndex = j;
+                    setTimeout(() => $("#tag-edit-modal").modal('open'), 200);
+                    break;
+                }
+            }
+        }
+
+        function saveTags() {
+            let newTags = M.Chips.getInstance($('#tag-edit-chips')).chipsData;
+            files.ar[editTagsIndex].tags = newTags;
+            db.put(files).then(function (res) {
+                files._rev = res.rev;
+                success('Tags saved successfully');
+                //modifying tags in subFiles array as well
+                let f = files.ar[editTagsIndex];
+                for (let i = 0; i < subFiles[f.subject].length; i++) {
+                    if (subFiles[f.subject][i].path == f.path) {
+                        subFiles[f.subject][i].tags = newTags;
+                        break;
+                    }
+                }
+                //rerender files menu:    
+                let items = "", ext = '', i, sub = f.subject;
+                for (f of subFiles[sub]) {
+                    i = f.name.lastIndexOf('.');
+                    if (i == -1)
+                        ext = 'default';
+                    else {
+                        ext = f.name.substring(i + 1).toLowerCase();
+                        ext = ext in fileTypes ? ext : 'default';
+                    }
+                    items += fileTemplate.render({ name: f.name, color: fileTypes[ext].color, tags: f.tags.length == 0 ? [{ tag: "Add tags" }] : f.tags, icon: fileTypes[ext].icon, path: f.path, sub: f.subject });
+                }
+                $("#filesMenu").html(items);
+            }).catch(function (err) {
+                console.log(err);
+                err("Some error occured")
+            });
+        }
+
+        function openFile(e) {
+            setTimeout(() => shell.openItem(e.getAttribute("data-path")), 200);
+        }
+
+
+        function minimize() {
+            remote.getCurrentWindow().minimize();
+        }
+    </script>
+</body>
+
+</html>
