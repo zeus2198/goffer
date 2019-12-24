@@ -76,7 +76,7 @@ Uncomment the following line from `main.js` file:
 ```
 Do not forget to comment this line while building. 
 #### Adding files to file type recognition used in file explorer and search result of app
-Find the following lines and add the type of file you want in the array:
+Find the following lines and add the type of file you want in the object:
 ```
 fileTypes = {
     'default': { icon: 'help', color: 'amber darken-3' },
