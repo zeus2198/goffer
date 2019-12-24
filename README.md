@@ -56,15 +56,15 @@ yarn run build
 ````
 Build for Windows:
 ```
-yar run build_windows
+yarn run build_windows
 ```
 Build for MacOS:
 ```
-yar run build_mac
+yarn run build_mac
 ```
 Build for Linux:
 ```
-yar run build_linux
+yarn run build_linux
 ```
 
 All the builds will be made in a folder named `build`.
