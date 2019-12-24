@@ -14,15 +14,19 @@ Video:
 
 ## Features
 - Simple and beautiful UI based on material design:
+
 ![Image](https://i.gyazo.com/a51602199c922349257d2cc72d07243a.png)
 
 - Various UI related customization for adding new categories:
+
 ![Image](https://i.gyazo.com/9a5fd17679c74e558fdf5d401173dd4d.png)
 
 - Beautiful file explorer for each category, with file typing(different icons for different types of files):
+
 ![Image](https://i.gyazo.com/774abe579d739ca3a8608a66f9423908.png)
 
 - Search based on file name and tags with file typing:
+
 ![Image](https://i.gyazo.com/ef7fc5b06c50d107379b3ea70c28c5dc.png)
 
 - Ability to add files by dragging and dropping them directly into the category.
