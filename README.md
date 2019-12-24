@@ -7,7 +7,10 @@ This is just a mini-app that I made as a project for college.
 
 ## Demo
 Video:
-<center>[![Demo video](https://img.youtube.com/vi/eTJQIwUQvhc/0.jpg)](https://www.youtube.com/watch?v=eTJQIwUQvhc)</center>
+<center>
+[![Demo video](https://img.youtube.com/vi/eTJQIwUQvhc/0.jpg)](https://www.youtube.com/watch?v=eTJQIwUQvhc)
+</center>
+
 
 ## Features
 - Simple and beautiful UI based on material design:
