@@ -7,9 +7,9 @@ This is just a mini-app that I made as a project for college.
 
 ## Demo
 Video:
-<center>
-[![Demo video](https://img.youtube.com/vi/eTJQIwUQvhc/0.jpg)](https://www.youtube.com/watch?v=eTJQIwUQvhc)
-</center>
+<div align="center">
+<a href="https://www.youtube.com/watch?v=eTJQIwUQvhc"><img src="https://img.youtube.com/vi/eTJQIwUQvhc/0.jpg" alt="IMAGE ALT TEXT"></a>
+</div>
 
 
 ## Features
