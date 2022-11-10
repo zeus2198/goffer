@@ -18,7 +18,7 @@
     "author": "Simran Singh",
     "license": "Apache",
     "devDependencies": {
-        "electron": "^7.1.2",
+        "electron": "^18.3.7",
         "electron-packager": "^14.1.0"
     },
     "dependencies": {
